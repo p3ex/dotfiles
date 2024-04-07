@@ -13,7 +13,7 @@
   tasks:
   
     - name: install alacritty
-      apt: 
+      dnf: 
         name: alacritty
         update_cache: yes
       when: alacritty == true
@@ -21,7 +21,7 @@
         - Alacritty config
         
     - name: Install tmux
-      apt: 
+      dnf: 
         name: tmux
         update_cache: yes
       when: tmux == true
@@ -29,7 +29,7 @@
         - Tmux config
 
     - name: install neovim
-      apt: 
+      dnf: 
         name: neovim
         update_cache: yes
       when: alacritty == true
