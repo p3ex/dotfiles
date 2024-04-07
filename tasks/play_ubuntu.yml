@@ -1,0 +1,46 @@
+---
+- name: dotenv files ubuntu
+  hosts: wg
+  become: yes
+  become_flags: "-i"
+  gather_facts: yes
+  vars: 
+    - swap: False
+    - host_key_checking: False
+  vars_files:
+    - envs/vars.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+  tasks:
+  
+    - name: install alacritty
+      apt: 
+        name: alacritty
+        update_cache: yes
+      when: alacritty == true
+      notify:
+        - Alacritty config
+        
+    - name: Install tmux
+      apt: 
+        name: tmux
+        update_cache: yes
+      when: tmux == true
+      notify:
+        - Tmux config
+
+    - name: install neovim
+      apt: 
+        name: neovim
+        update_cache: yes
+      when: alacritty == true
+      notify:
+        - Vi alias
+        - Neovim config
+
+  handlers:
+    - name: Alacritty config
+      copy:
+        src: configs/alacritty
+        dest: .configs
+        owner: {{ user }}
+        group: {{ user }}

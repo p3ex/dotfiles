@@ -1,0 +1,46 @@
+---
+- name: dotenv files ArchLinux
+  hosts: wg
+  become: yes
+  become_flags: "-i"
+  gather_facts: yes
+  vars: 
+    - swap: False
+    - host_key_checking: False
+  vars_files:
+    - envs/vars.yml
+  when: ansible_facts['distribution'] == "Archlinux"
+  tasks:
+  
+    - name: Install alacritty
+      pacman: 
+        name: alacritty
+        update_cache: yes
+      when: alacritty == true
+      notify:
+        - Alacritty config
+        
+    - name: Install tmux
+      pacman: 
+        name: tmux
+        update_cache: yes
+      when: tmux == true
+      notify:
+        - Tmux config
+
+    - name: Install neovim
+      pacman: 
+        name: neovim
+        update_cache: yes
+      when: alacritty == true
+      notify:
+        - Vi alias
+        - Neovim config
+
+  handlers:
+    - name: Alacritty config
+      copy:
+        src: configs/alacritty
+        dest: .configs
+        owner: {{ user }}
+        group: {{ user }}

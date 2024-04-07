@@ -1,0 +1,29 @@
+window:
+   dimensions:
+     columns: 133
+     lines: 40
+   opacity: 0.95
+
+# Font configuration
+font:
+  normal:
+    family: Luxi Mono
+    #family: Hack Nerd Font Mono
+    style: Regular
+
+  bold:
+    family: Luxi Mono
+    #family: Hack Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: Luxi Mono
+    #family: Hack Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: Luxi Mono
+    #family: Hack Nerd Font Mono
+    style: Bold Italic
+  # Point size
+  size: 12.0
